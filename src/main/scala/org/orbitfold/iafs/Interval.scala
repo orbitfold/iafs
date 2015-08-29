@@ -37,6 +37,18 @@ class Interval(ac: Double, bc: Double) {
     new Interval(comb.min, comb.max)
   }
 
+  def ==(that: Interval): Boolean = {
+    this.a == that.a && this.b == that.b
+  }
+
+  def <(that: Interval): Boolean = {
+    this.b < that.a
+  }
+
+  def >(that: Interval): Boolean = {
+    that.b < this.a
+  }
+
   override def toString(): String =
     "[" + a + ", " + b + "]"
 }
