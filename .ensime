@@ -1,0 +1,24 @@
+(
+ :root-dir "/home/vytas/iafs"
+ :cache-dir "/home/vytas/iafs/.ensime_cache"
+ :name "iafs"
+ :java-home "/usr/lib/jvm/java-7-openjdk-amd64"
+ :java-flags ("-Xms1024m" "-Xmx1024m" "-XX:ReservedCodeCacheSize=128m" "-XX:MaxPermSize=256m")
+ :reference-source-roots nil
+ :scala-version "2.10.5"
+ :compiler-args nil
+ 
+ :subprojects ((
+   :name "iafs"
+   :module-name "iafs"
+   :source-roots ("/home/vytas/iafs/src/main/scala" "/home/vytas/iafs/src/main/java" "/home/vytas/iafs/src/test/scala" "/home/vytas/iafs/src/test/java")
+   :target "/home/vytas/iafs/target/scala-2.10/classes"
+   :test-targets ("/home/vytas/iafs/target/scala-2.10/test-classes")
+   :depends-on-modules nil
+   :compile-deps ("/home/vytas/.sbt/boot/scala-2.10.5/lib/scala-library.jar")
+   :runtime-deps nil
+   :test-deps nil
+   :doc-jars ("/home/vytas/.ivy2/cache/org.scala-lang/scala-library/docs/scala-library-2.10.5-javadoc.jar" "/home/vytas/iafs/target/scala-2.10/iafs_2.10-0.1-SNAPSHOT-javadoc.jar")
+   :reference-source-roots ("/home/vytas/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.5-sources.jar")))
+ 
+)
