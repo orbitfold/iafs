@@ -57,13 +57,13 @@ class IntervalSuite extends FunSuite {
   }
 
   test("Equality operator should work according to interval arithmetic") {
-    var interval1 = new Interval(-2.0, 4.0)
+    val interval1 = new Interval(-2.0, 4.0)
     assert(interval1 == interval1)
   }
 
   test("Inequality operators should work according to interval arithmetic") {
-    var interval1 = new Interval(-2.0, 4.0)
-    var interval2 = new Interval(5.0, 6.0)
+    val interval1 = new Interval(-2.0, 4.0)
+    val interval2 = new Interval(5.0, 6.0)
     assert(interval1 < interval2)
     assert(interval2 > interval1)
     assert(interval1 != interval2)
