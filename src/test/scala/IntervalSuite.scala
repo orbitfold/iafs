@@ -68,4 +68,40 @@ class IntervalSuite extends FunSuite {
     assert(interval2 > interval1)
     assert(interval1 != interval2)
   }
+
+  test("Width should return the width of the interval") {
+    val interval = new Interval(-2.0, 2.0)
+    assert(interval.width == 4.0)
+  }
+
+  test("Mag should return the magnitude of the interval") {
+    val interval = new Interval(-3.0, 2.0)
+    assert(interval.mag == 3.0)
+  }
+
+  test("Mig should return the mignitude of the interval") {
+    val interval = new Interval(-3.0, -1.0)
+    assert(interval.mig == 1.0)
+  }
+
+  test("Contains should show if an interval is contained in another interval") {
+    val interval1 = new Interval(-3.0, -1.0)
+    val interval2 = new Interval(-2.0, -1.0)
+    val interval3 = new Interval(-4.0, -1.0)
+    val interval4 = new Interval(-2.0, 1.0)
+    assert(interval1.contains(interval2))
+    assert(!interval1.contains(interval3))
+    assert(!interval1.contains(interval4))
+  }
+
+  test("All basic interval arithmetic operations should be inclusion isotonic") {
+    val interval1 = new Interval(2.0, 4.0)
+    val interval2 = new Interval(2.5, 3.5)
+    val interval3 = new Interval(1.0, 3.0)
+    val interval4 = new Interval(1.5, 2.5)
+    assert((interval1 + interval3).contains(interval2 + interval3))
+    assert((interval1 - interval3).contains(interval2 - interval3))
+    assert((interval1 * interval3).contains(interval2 * interval3))
+    assert((interval1 / interval3).contains(interval2 / interval3))
+  }
 }

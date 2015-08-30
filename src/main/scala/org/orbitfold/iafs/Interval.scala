@@ -1,6 +1,8 @@
 package org.orbitfold.iafs
 
 import java.lang.ArithmeticException
+import scala.math.max
+import scala.math.abs
 
 class Interval(ac: Double, bc: Double) {
   var a: Double = ac
@@ -15,9 +17,31 @@ class Interval(ac: Double, bc: Double) {
   def midpoint =
     (a + b) * 0.5
 
+  /** Return the width of the interval */
+  def width =
+    b - a
+
+  /** Return magnitude of the interval */
+  def mag =
+    max(abs(a), abs(b))
+
+  /** Return mignitude of the interval */
+  def mig = 
+    if (a > 0) {
+      a
+    } else if (b < 0) {
+      -b
+    } else {
+      0
+    }
+
   /** Check if a number is included in the interval */
   def contains(x: Double): Boolean =
     x >= a && x <= b
+
+  /** Check if a given interval is contained in this interval */
+  def contains(x: Interval): Boolean =
+    x.a >= a && x.b <= b
 
   def +(that: Interval): Interval =
     new Interval(this.a + that.a, this.b + that.b)
