@@ -104,4 +104,18 @@ class IntervalSuite extends FunSuite {
     assert((interval1 * interval3).contains(interval2 * interval3))
     assert((interval1 / interval3).contains(interval2 / interval3))
   }
+
+  test("Square root of the interval should work correctly") {
+    val interval = new Interval(4.0, 16.0)
+    val sqrt_interval = Interval.sqrt(interval)
+    assert(sqrt_interval.a == 2.0)
+    assert(sqrt_interval.b == 4.0)
+  }
+
+  test("Square root should raise an exception if used on intervals containing negative numbers") {
+    val interval = new Interval(-2.0, 16.0)
+    intercept[ArithmeticException] {
+      Interval.sqrt(interval)
+    }
+  }
 }

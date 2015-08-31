@@ -3,6 +3,15 @@ package org.orbitfold.iafs
 import java.lang.ArithmeticException
 import scala.math.max
 import scala.math.abs
+import scala.math.{sqrt => sqrt_}
+
+object Interval {
+  def sqrt(x: Interval): Interval = {
+    if (x.a < 0.0)
+      throw new ArithmeticException("Square root of an interval including negative numbers is undefined")
+    new Interval(sqrt_(x.a), sqrt_(x.b))
+  }
+}
 
 class Interval(ac: Double, bc: Double) {
   var a: Double = ac
