@@ -22,6 +22,9 @@ class Interval(ac: Double, bc: Double) {
     a = tmp
   }
 
+  /** Construct degenerate interval */
+  def this(x: Double) = this(x, x)
+
   /** Return the midpoint of the interval */
   def midpoint =
     (a + b) * 0.5
