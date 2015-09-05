@@ -1,9 +1,8 @@
 package org.orbitfold.iafs
 
 import java.lang.ArithmeticException
-import scala.math.max
-import scala.math.abs
-import scala.math.{sqrt => sqrt_}
+import scala.math.{max, abs, Pi, floor}
+import scala.math.{sqrt => sqrt_, sin => sin_, cos => cos_}
 
 object Interval {
   def sqrt(x: Interval): Interval = {
@@ -11,6 +10,34 @@ object Interval {
       throw new ArithmeticException("Square root of an interval including negative numbers is undefined")
     new Interval(sqrt_(x.a), sqrt_(x.b))
   }
+
+/**
+  def sin(x: Interval): Interval = {
+    if (x.width >= 2.0 * Pi) {
+      new Interval(-1.0, 1.0)
+    } else {
+      val n = floor(x.a / (2.0 * Pi))
+      val a = x.a - n * 2.0 * Pi
+      val b = x.b - n * 2.0 * Pi
+      val x_interval = new Interval(a, b)
+      if (x_interval.contains(0.5 * Pi)) {
+        if (x_interval.contains(1.5 * Pi)) {
+          new Interval(-1.0, 1.0)
+        } else {
+          val sin_a = sin_(a)
+          val sin_b = sin_(b)
+
+        }
+      }
+    }
+  }
+
+  def cos(x: Interval): Interval = {
+    if (x.width >= 2.0 * Pi) {
+      new Interval(-1.0, 1.0)
+    }
+  }
+  */
 }
 
 class Interval(ac: Double, bc: Double) {
