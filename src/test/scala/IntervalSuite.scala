@@ -2,14 +2,14 @@ import org.scalatest.FunSuite
 import org.orbitfold.iafs._
 
 class IntervalSuite extends FunSuite {
-  test("Interval should swap bounds if a is larger than b") {
+  test("interval should swap bounds if a is larger than b") {
     val interval = new Interval(0.5, 0.2)
     assert(interval.a == 0.2)
     assert(interval.b == 0.5)
     assert(interval.a < interval.b) 
   }
 
-  test("Interval addition should work according to interval arithmetic") {
+  test("interval addition should work according to interval arithmetic") {
     val interval1 = new Interval(0.1, 0.2)
     val interval2 = new Interval(1.0, 3.0)
     val sum = interval1 + interval2
@@ -17,7 +17,7 @@ class IntervalSuite extends FunSuite {
     assert(sum.b == 3.2)
   }
 
-  test("Interval subtraction should work according to interval arithmetic") {
+  test("interval subtraction should work according to interval arithmetic") {
     val interval1 = new Interval(0.1, 0.2)
     val interval2 = new Interval(1.0, 3.0)
     val sub = interval1 - interval2
@@ -25,19 +25,19 @@ class IntervalSuite extends FunSuite {
     assert(sub.b == -0.8)
   }
 
-  test("Midpoint should return the midpoint of the interval") {
+  test("midpoint should return the midpoint of the interval") {
     val interval = new Interval(0.0, 1.0)
     assert(interval.midpoint == 0.5)
   }
 
-  test("Inclusion should return true if a Double falls within the interval bounds") {
+  test("inclusion should return true if a Double falls within the interval bounds") {
     val interval = new Interval(-1.0, 1.0)
     assert(interval.contains(0.0))
     assert(!interval.contains(2.0))
     assert(!interval.contains(-2.0))
   }
 
-  test("Interval multiplication should work according to interval arithmetic") {
+  test("interval multiplication should work according to interval arithmetic") {
     val interval1 = new Interval(-2.0, 4.0)
     val interval2 = new Interval(-3.0, -1.0)
     val mul = interval1 * interval2
@@ -45,7 +45,7 @@ class IntervalSuite extends FunSuite {
     assert(mul.b == 6.0)
   }
 
-  test("Interval division should work according to interval arithmetic") {
+  test("interval division should work according to interval arithmetic") {
     val interval1 = new Interval(-2.0, 4.0)
     val interval2 = new Interval(-3.0, -1.0)
     intercept[ArithmeticException] {
@@ -56,12 +56,12 @@ class IntervalSuite extends FunSuite {
     assert(div.b == 2.0)
   }
 
-  test("Equality operator should work according to interval arithmetic") {
+  test("equality operator should work according to interval arithmetic") {
     val interval1 = new Interval(-2.0, 4.0)
     assert(interval1 == interval1)
   }
 
-  test("Inequality operators should work according to interval arithmetic") {
+  test("inequality operators should work according to interval arithmetic") {
     val interval1 = new Interval(-2.0, 4.0)
     val interval2 = new Interval(5.0, 6.0)
     assert(interval1 < interval2)
@@ -69,22 +69,22 @@ class IntervalSuite extends FunSuite {
     assert(interval1 != interval2)
   }
 
-  test("Width should return the width of the interval") {
+  test("width should return the width of the interval") {
     val interval = new Interval(-2.0, 2.0)
     assert(interval.width == 4.0)
   }
 
-  test("Mag should return the magnitude of the interval") {
+  test("mag should return the magnitude of the interval") {
     val interval = new Interval(-3.0, 2.0)
     assert(interval.mag == 3.0)
   }
 
-  test("Mig should return the mignitude of the interval") {
+  test("mig should return the mignitude of the interval") {
     val interval = new Interval(-3.0, -1.0)
     assert(interval.mig == 1.0)
   }
 
-  test("Contains should show if an interval is contained in another interval") {
+  test("contains should show if an interval is contained in another interval") {
     val interval1 = new Interval(-3.0, -1.0)
     val interval2 = new Interval(-2.0, -1.0)
     val interval3 = new Interval(-4.0, -1.0)
@@ -94,7 +94,7 @@ class IntervalSuite extends FunSuite {
     assert(!interval1.contains(interval4))
   }
 
-  test("All basic interval arithmetic operations should be inclusion isotonic") {
+  test("all basic interval arithmetic operations should be inclusion isotonic") {
     val interval1 = new Interval(2.0, 4.0)
     val interval2 = new Interval(2.5, 3.5)
     val interval3 = new Interval(1.0, 3.0)
@@ -105,14 +105,14 @@ class IntervalSuite extends FunSuite {
     assert((interval1 / interval3).contains(interval2 / interval3))
   }
 
-  test("Square root of the interval should work correctly") {
+  test("square root of the interval should work correctly") {
     val interval = new Interval(4.0, 16.0)
     val sqrt_interval = Interval.sqrt(interval)
     assert(sqrt_interval.a == 2.0)
     assert(sqrt_interval.b == 4.0)
   }
 
-  test("Square root should raise an exception if used on intervals containing negative numbers") {
+  test("square root should raise an exception if used on intervals containing negative numbers") {
     val interval = new Interval(-2.0, 16.0)
     intercept[ArithmeticException] {
       Interval.sqrt(interval)
